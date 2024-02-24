@@ -27,12 +27,12 @@ public interface ISanPhamRepository extends JpaRepository<SanPhamModel, String> 
 
     List<SanPhamModel> findByMaIn(List<String> ma);
 
-//    @Query("SELECT km.sanPham  FROM KhuyenMaiModel km where km.ngayKetThuc >= current_date")
-//    List<SanPhamModel> findAllSanPhamWithKhuyenMai();
+    @Query("SELECT km.sanPham  FROM KhuyenMaiModel km where km.ngayKetThuc < current_date")
+    List<SanPhamModel> findAllSanPhamWithKhuyenMai();
 
 
-//    @Query("SELECT km.sanPham  FROM KhuyenMaiModel km where km.ngayBatDau > current_date")
-//    List<SanPhamModel> findAllSanPhamWithKmWhereNgayBatDau();
+    @Query("SELECT km.sanPham  FROM KhuyenMaiModel km where km.ngayBatDau > current_date")
+    List<SanPhamModel> findAllSanPhamWithKmWhereNgayBatDau();
 
 //    @Query("""
 //                SELECT s FROM SanPhamModel s JOIN ChiTietSanPhamModel c ON s.ma = c.sanPham.ma

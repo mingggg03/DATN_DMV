@@ -27,8 +27,8 @@ public interface ISanPhamService {
 
     List<SanPhamDtoResponse> saveAll(List<SanPhamDtoRequest> sanPham);
 
-//    List<SanPhamModel> findByAllSanPhamWithKM();
-//
+    List<SanPhamModel> findByAllSanPhamWithKM();
+
 //    List<SanPhamModel> findAllWithKmWhereNgayBD();
 
     SanPhamDtoResponse save(SanPhamDtoRequest entity);

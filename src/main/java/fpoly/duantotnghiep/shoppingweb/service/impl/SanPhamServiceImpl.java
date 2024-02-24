@@ -112,10 +112,10 @@ public class SanPhamServiceImpl implements ISanPhamService {
         return entities.stream().map(s -> new SanPhamDtoResponse(s)).collect(Collectors.toList());
     }
 
-//    @Override
-//    public List<SanPhamModel> findByAllSanPhamWithKM() {
-//        return sanPhamRepository.findAllSanPhamWithKhuyenMai();
-//    }
+    @Override
+    public List<SanPhamModel> findByAllSanPhamWithKM() {
+        return sanPhamRepository.findAllSanPhamWithKhuyenMai();
+    }
 
 //    @Override
 //    public List<SanPhamModel> findAllWithKmWhereNgayBD() {

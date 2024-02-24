@@ -2,35 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/admin/index}">
-
 <body data-topbar="dark">
-
 <!-- ============================================================== -->
 <!-- Start right Content here -->
 <!-- ============================================================== -->
 <div class="main-content" layout:fragment="content">
-
     <div class="page-content">
         <div class="container-fluid">
-
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0 font-size-18"></h4>
-
                         <!--                        <div class="page-title-right">-->
                         <!--                            <ol class="breadcrumb m-0">-->
                         <!--                                <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>-->
                         <!--                                <li class="breadcrumb-item active">Add Product</li>-->
                         <!--                            </ol>-->
                         <!--                        </div>-->
-
                     </div>
                 </div>
             </div>
             <!-- end page title -->
-
             <div class="row">
                 <form th:action="@{${action}}" th:object="${khuyenMai}" method="post">
                     <div class="col-12">
@@ -48,12 +41,12 @@
                                                    class="form-control">
                                             <div id="emailHelp" class="form-text" style="color: red"
                                                  th:if="${#fields.hasErrors('ten')}"
-                                                 th:errors="*{ten}"></div>
+                                                 th:errors="*{ten}">
+                                            </div>
                                         </div>
                                         <div class="mb-3">
                                             <label class="control-label">Loại Giảm</label>
                                             <select th:field="*{loai}" class="form-control select2">
-                                                <!--                                                <option>Select</option>-->
                                                 <option value="PHAN TRAM">Phần Trăm</option>
                                                 <option value="TIEN">Tiền</option>
                                             </select>
@@ -65,7 +58,8 @@
                                                    class="form-control">
                                             <div id="emailHelp" class="form-text" style="color: red"
                                                  th:if="${#fields.hasErrors('mucGiam')}"
-                                                 th:errors="*{mucGiam}"></div>
+                                                 th:errors="*{mucGiam}">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -75,7 +69,8 @@
                                             <input th:field="*{ngayBatDau}" type="date" class="form-control">
                                             <div id="emailHelp" class="form-text" style="color: red"
                                                  th:if="${#fields.hasErrors('ngayBatDau')}"
-                                                 th:errors="*{ngayBatDau}"></div>
+                                                 th:errors="*{ngayBatDau}">
+                                            </div>
                                         </div>
                                         <div class="mb-3">
                                             <label class="control-label">Ngày Kết Thúc</label>
@@ -84,7 +79,8 @@
                                                    class="form-control">
                                             <div id="emailHelp" class="form-text" style="color: red"
                                                  th:if="${#fields.hasErrors('ngayKetThuc')}"
-                                                 th:errors="*{ngayKetThuc}"></div>
+                                                 th:errors="*{ngayKetThuc}">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +122,7 @@
                                         <thead>
                                         <tr>
                                             <th></th>
-                                            <th></th>
+                                            <!--                                            <th></th>-->
                                             <th>Tên</th>
                                             <th>Số lượng</th>
                                             <th>Giá Bán</th>
@@ -134,22 +130,21 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="sp : ${sanPham}">
-
                                             <td>
                                                 <input name="ids" th:value="${sp.ma}" type="checkbox"
                                                        th:checked="${#lists.contains(sanPhamOn, sp.ma)}"
                                                        th:disabled="${#lists.contains(sanPhamKhuyenMai, sp.ma)}">
                                             </td>
-                                            <td>
-                                                <img th:if="${sp.anh.size >0}"
-                                                     th:src="@{'/image/loadImage/product/' + ${sp.anh[0]}}"
-                                                     class="imgProduct"
-                                                     style="border-radius: 15px; width: 100px; height: 100px">
-                                                <img th:if="${sp.anh.size <=0}"
-                                                     th:src="@{'/image/loadImage/product/envato.png'}"
-                                                     class="imgProduct"
-                                                     style="border-radius: 15px; width: 100px; height: 100px">
-                                            </td>
+                                            <!--                                            <td>-->
+                                            <!--                                                <img th:if="${sp.anh.size >0}"-->
+                                            <!--                                                     th:src="@{'/image/loadImage/product/' + ${sp.anh[0]}}"-->
+                                            <!--                                                     class="imgProduct"-->
+                                            <!--                                                     style="border-radius: 15px; width: 100px; height: 100px">-->
+                                            <!--                                                <img th:if="${sp.anh.size <=0}"-->
+                                            <!--                                                     th:src="@{'/image/loadImage/product/envato.png'}"-->
+                                            <!--                                                     class="imgProduct"-->
+                                            <!--                                                     style="border-radius: 15px; width: 100px; height: 100px">-->
+                                            <!--                                            </td>-->
                                             <td th:text="${sp.ten}"></td>
                                             <td th:text="${sp.soLuong}"></td>
                                             <td th:text="${sp.giaBan}"></td>
@@ -158,20 +153,15 @@
                                     </table>
                                 </div>
                             </div>
-
                         </div> <!-- end card-->
                     </div>
                 </form>
             </div>
             <!-- end row -->
-
         </div>
-
         <!-- container-fluid -->
     </div>
-
     <!-- End Page-content -->
-
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">
@@ -188,6 +178,5 @@
         </div>
     </footer>
 </div>
-
 </body>
 </html>
