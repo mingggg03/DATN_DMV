@@ -34,14 +34,14 @@ public interface ISanPhamRepository extends JpaRepository<SanPhamModel, String> 
     @Query("SELECT km.sanPham  FROM KhuyenMaiModel km where km.ngayBatDau > current_date")
     List<SanPhamModel> findAllSanPhamWithKmWhereNgayBatDau();
 
-//    @Query("""
-//                SELECT s FROM SanPhamModel s JOIN ChiTietSanPhamModel c ON s.ma = c.sanPham.ma
-//                JOIN ChiTietDonHangModel ctdh on ctdh.chiTietSanPham.id = c.id
-//                WHERE s.hienThi = true and s.trangThai = true
-//                GROUP BY s
-//                ORDER BY SUM(ctdh.soLuong) DESC
-//            """)
-//    Page<SanPhamModel> getBanChay(Pageable pageable);
+    @Query("""
+                SELECT s FROM SanPhamModel s JOIN ChiTietSanPhamModel c ON s.ma = c.sanPham.ma
+                JOIN ChiTietDonHangModel ctdh on ctdh.chiTietSanPham.id = c.id
+                WHERE s.hienThi = true and s.trangThai = true
+                GROUP BY s
+                ORDER BY SUM(ctdh.soLuong) DESC
+            """)
+    Page<SanPhamModel> getBanChay(Pageable pageable);
 
     @Query("""
                 SELECT s FROM SanPhamModel s WHERE s.mucGiam IS NOT null and s.hienThi = true and s.trangThai = true

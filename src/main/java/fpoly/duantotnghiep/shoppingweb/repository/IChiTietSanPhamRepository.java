@@ -34,11 +34,11 @@ public interface IChiTietSanPhamRepository extends JpaRepository<ChiTietSanPhamM
 
     ChiTietSanPhamModel getBySanPhamMaAndSizeMa(String maSP, Float size);
 
-//    @Query("""
-//    SELECT c FROM ChiTietSanPhamModel c
-//    WHERE c.id not in (SELECT s.chiTietSanPham.id from ChiTietDonHangModel s WHERE s.donHang.ma = ?1)
-//""")
-//    List<ChiTietSanPhamModel> getChiTietSanPhamNotInDonHang(String maDonHang);
+    @Query("""
+    SELECT c FROM ChiTietSanPhamModel c
+    WHERE c.id not in (SELECT s.chiTietSanPham.id from ChiTietDonHangModel s WHERE s.donHang.ma = ?1)
+""")
+    List<ChiTietSanPhamModel> getChiTietSanPhamNotInDonHang(String maDonHang);
 
     @Query("""
     SELECT c FROM ChiTietSanPhamModel c 
