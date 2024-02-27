@@ -59,7 +59,7 @@
                                     <tr ng-repeat="i in items">
                                         <td>{{$index + 1}}</td>
                                         <td>{{i.size}}</td>
-                                        <td><input value="{{i.soLuong}}" min="0" type="number" class="inputInTable" id="{{i.id}}" th:disabled="${!hasAdmin}"
+                                        <td><input value="{{i.soLuong}}" min="0" type="number" class="inputInTable" id="{{i.id}}"
                                             onchange="angular.element(this).scope().updateSlInTable(this.value,this.id)"></td>
                                         <td th:if="${hasAdmin}">
                                             <div class="dropdown">
@@ -85,7 +85,7 @@
                                         <div class="d-flex justify-content-center">
                                             <div class="mb-3 col-10 " ng-click="removeER('eSize')">
                                                 <label >Size</label>
-                                                <select class="form-select" ng-model="form.sizes" id="sizeSL" data-placeholder="Chọn size" multiple th:disabled="${!hasAdmin}">
+                                                <select class="form-select" ng-model="form.sizes" id="sizeSL" data-placeholder="Chọn size" multiple >
 <!--                                                    <option >Chọn tất cả</option>-->
                                                     <option ng-repeat="s in sizes" value="{{s.ma}}" style="border-bottom: 1px" >{{s.ma}}</option>
                                                 </select>
@@ -95,7 +95,7 @@
                                         <div class="d-flex justify-content-center">
                                             <div class="col-10 mb-3">
                                                 <label >Số lượng</label>
-                                                <input ng-model="form.soLuong" type="number" min="0" th:disabled="${!hasAdmin}"
+                                                <input ng-model="form.soLuong" type="number" min="0"
                                                        required class="form-control" ng-focus="removeER('eSoLuong')">
                                                 <i id="eSoLuong"  class="er"></i>
                                             </div>
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="d-flex justify-content-center">
                                     <div class="d-flex flex-wrap gap-2 col-10">
-                                        <button type="button" ng-click="add()" th:disabled="${!hasAdmin}" class="btn btn-primary waves-effect waves-light">Thêm </button>
+                                        <button type="button" ng-click="add()"  class="btn btn-primary waves-effect waves-light">Thêm </button>
                                     </div>
                                     </div>
                                 </form>
