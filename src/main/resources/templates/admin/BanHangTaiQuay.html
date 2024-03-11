@@ -5,6 +5,8 @@
       layout:decorate="~{/admin/index}">
 <head>
     <title>DMV Strore | Bán Hàng</title>
+    <script src="../../static/admin/js/camTest.js"></script>
+<!--    <script src="/static/admin/js/camTest.js"></script>-->
 </head>
 <body>
 
@@ -18,7 +20,55 @@
             color: red;
             font-size: 13px;
         }
+        #canvas {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 150px; /* Điều chỉnh chiều rộng để tạo thành hình vuông */
+            height: 100px;
+            border: 1px solid #030303;
+            border-radius: 10%;
+            overflow: hidden; /* Đảm bảo không có phần nào của video bị tràn ra ngoài khung */
+        }
+
+        #video-preview {
+            width: 100%;
+            height: auto; /* Đảm bảo tỷ lệ khung hình của video không bị giữ lại */
+        }
+
+        #output {
+            margin-top: 20px;
+            background: #eee;
+            padding: 10px;
+            padding-bottom: 0;
+        }
+
+        #output div {
+            padding-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        #noQRFound {
+            text-align: center;
+        /*#qr-scanner {*/
+        /*    position: fixed;*/
+        /*    top: 20px;*/
+        /*    right: 20px;*/
+        /*    width: 150px; !* Điều chỉnh chiều rộng để tạo thành hình vuông *!*/
+        /*    height: 100px;*/
+        /*    border-style: solid;*/
+        /*    border-radius: 10%;*/
+        /*    overflow: hidden; !* Đảm bảo không có phần nào của video bị tràn ra ngoài khung *!*/
+        /*}*/
+
+        /*#video-preview {*/
+        /*    width: 100%;*/
+        /*    height: auto; !* Đảm bảo tỷ lệ khung hình của video không bị giữ lại *!*/
+        /*}*/
+
     </style>
+
+
 <div class="page-content" ng-app="banhang-app" ng-controller="banhang-ctrl">
     <div class="container-fluid">
         <div class="col-xl-12">
@@ -835,7 +885,76 @@
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
+
                                 <h5 class="modal-title" id="adDonHang">Thêm đơn hàng</h5>
+
+
+
+                                <div id="loadingMessage">🎥 Đang tìm camera</div>
+                                <canvas id="canvas" hidden></canvas>
+                                <div id="output" hidden>
+                                    <div id="outputMessage">Thông tin.</div>
+                                    <div hidden><b>Mã:</b> <span id="outputData"></span></div>
+                                </div>
+                                <script>
+                                    var video = document.createElement("video");
+                                    var canvasElement = document.getElementById("canvas");
+                                    var canvas = canvasElement.getContext("2d");
+                                    var loadingMessage = document.getElementById("loadingMessage");
+                                    var outputContainer = document.getElementById("output");
+                                    var outputMessage = document.getElementById("outputMessage");
+                                    var outputData = document.getElementById("outputData");
+
+                                    function drawLine(begin, end, color) {
+                                        canvas.beginPath();
+                                        canvas.moveTo(begin.x, begin.y);
+                                        canvas.lineTo(end.x, end.y);
+                                        canvas.lineWidth = 4;
+                                        canvas.strokeStyle = color;
+                                        canvas.stroke();
+                                    }
+
+                                    // Use facingMode: environment to attemt to get the front camera on phones
+                                    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
+                                        video.srcObject = stream;
+                                        video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+                                        video.play();
+                                        requestAnimationFrame(tick);
+                                    });
+
+                                    function tick() {
+                                        loadingMessage.innerText = "⌛ Loading video..."
+                                        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                                            loadingMessage.hidden = true;
+                                            canvasElement.hidden = false;
+                                            outputContainer.hidden = false;
+
+                                            canvasElement.height = video.videoHeight;
+                                            canvasElement.width = video.videoWidth;
+                                            canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+                                            var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+                                            var code = jsQR(imageData.data, imageData.width, imageData.height, {
+                                                inversionAttempts: "dontInvert",
+                                            });
+                                            if (code) {
+                                                drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+                                                drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+                                                drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+                                                drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+                                                outputMessage.hidden = true;
+                                                outputData.parentElement.hidden = false;
+                                                outputData.innerText = code.data;
+                                            } else {
+                                                outputMessage.hidden = false;
+                                                outputData.parentElement.hidden = true;
+                                            }
+                                        }
+                                        requestAnimationFrame(tick);
+                                    }
+                                </script>
+
+
+
                                 <button type="button" class="close btn" data-dismiss="modal" aria-label="Close"
                                         ng-click="closeModal('#add')">
                                     <span aria-hidden="true">&times;</span>
