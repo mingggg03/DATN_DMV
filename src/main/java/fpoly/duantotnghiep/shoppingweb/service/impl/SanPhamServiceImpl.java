@@ -218,13 +218,13 @@ public class SanPhamServiceImpl implements ISanPhamService {
         return listSP;
     }
 
-//    @Override
-//    public List<SanPhamDtoResponse> getBanChay(Integer limit) {
-//        List<SanPhamDtoResponse> lst = sanPhamRepository.getBanChay(PageRequest.of(0, limit))
-//                .getContent().stream()
-//                .map(s -> new SanPhamDtoResponse(s)).collect(Collectors.toList());
-//        return lst;
-//    }
+    @Override
+    public List<SanPhamDtoResponse> getBanChay(Integer limit) {
+        List<SanPhamDtoResponse> lst = sanPhamRepository.getBanChay(PageRequest.of(0, limit))
+                .getContent().stream()
+                .map(s -> new SanPhamDtoResponse(s)).collect(Collectors.toList());
+        return lst;
+    }
 
     @Override
     public List<SanPhamDtoResponse> getKhuyenMai(Integer limit) {

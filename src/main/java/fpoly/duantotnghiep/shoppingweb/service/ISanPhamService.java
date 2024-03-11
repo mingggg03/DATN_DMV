@@ -52,7 +52,7 @@ public interface ISanPhamService {
 
     List<SanPhamDtoResponse> getSanPhamTuongTu(String ma);
 
-//    List<SanPhamDtoResponse> getBanChay(Integer limit);
+    List<SanPhamDtoResponse> getBanChay(Integer limit);
 
     List<SanPhamDtoResponse> getKhuyenMai(Integer limit);
 

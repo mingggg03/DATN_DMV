@@ -46,11 +46,11 @@ public interface IChiTietSanPhamRepository extends JpaRepository<ChiTietSanPhamM
 """)
     List<ChiTietSanPhamModel> getBySanPhamIdOrNameContais(String keyWord);
 
-//@Query("""
-//SELECT SUM(c.soLuong) FROM ChiTietDonHangModel c
-//WHERE c.donHang.ngayDatHang in (?1,?2)
-//""")
-//    Long getTotalQauntityInOrdersWithDate(Date firstDate, Date lastDate);
+@Query("""
+SELECT SUM(c.soLuong) FROM ChiTietDonHangModel c
+WHERE c.donHang.ngayDatHang in (?1,?2)
+""")
+    Long getTotalQauntityInOrdersWithDate(Date firstDate, Date lastDate);
 
     List<ChiTietSanPhamModel> getAllBySize(SizeModel sizeModel);
 

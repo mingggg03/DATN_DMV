@@ -71,7 +71,7 @@
 
                 <!-- Logo desktop -->
                 <a href="/trang-chu" class="logo">
-                    <img src="/admin/images/hydra.png" alt="IMG-LOGO">
+                    <img src="/admin/images/dmv.png" alt="IMG-LOGO">
                 </a>
 
                 <!-- Menu desktop -->
@@ -92,9 +92,10 @@
                     </ul>
                 </div>
 
-                <!-- Icon header -->
+                <!-- Icon header th:if="${request.remoteUser}" -->
                 <div class="wrap-icon-header flex-w flex-r-m">
-                    <a href="/danh-sach-yeu-thich" th:if="${request.remoteUser}"
+                    <a href="/danh-sach-yeu-thich"
+
                        class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 "
                     >
                         <i class="zmdi zmdi-favorite-outline" style="color: white"></i>
@@ -106,14 +107,15 @@
 
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 dropdown">
                         <a class="dropdown-toggle d-flex align-items-center" id="dropdownMenuButton"
-                           style="color: white" data-toggle="dropdown" th:if="${request.remoteUser}"
+                           style="color: white" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             <img class="rounded-circle header-profile-user" id="imgUser"
                                  style="width: 40px;height: 40px"
-                                 th:src="@{|/image/loadImageKhachHang/${#authentication.name}|}"
+
                                  alt="Header Avatar">
+<!--                            th:src="@{|/image/loadImageKhachHang/${#authentication.name}|}"-->
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" th:if="${request.remoteUser}">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
                             <a class="dropdown-item" href="/thong-tin-ca-nhan">Tài khoản</a>
                             <a class="dropdown-item" href="/lich-su-mua-hang1">Đơn hàng</a>
                             <a class="dropdown-item" href="/doi-mat-khau">Đổi mật khẩu</a>
@@ -121,7 +123,7 @@
                         </div>
 
                         <a style="color: white;font-weight: bold;font-size: 15px" href="/dang-nhap"
-                           th:unless="${request.remoteUser}">
+                           >
                             Đăng nhập
                             <i class="fa-sharp fa-solid fa-right-to-bracket fa-flip-horizontal"></i>
                         </a>
@@ -205,11 +207,13 @@
 </header>
 
 <!-- Slider -->
+
+
 <section class="section-slide">
     <div class="wrap-slick1 rs2-slick1">
         <div class="slick1">
-            <div class="item-slick1 bg-overlay1" style="background-image: url(/image/loadImage/product/banner1.jpg); height: 500px"
-                 data-thumb="/image/loadImage/product/banner1.jpg" data-caption="Hydra sneaker">
+            <div class="item-slick1 bg-overlay1" style="background-image: url(/image/loadImage/product/banner3.jpg); height: 500px"
+                 data-thumb="/image/loadImage/product/banner3.jpg" data-caption="DMV Store">
                 <div class="container h-full">
 <!--                    <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">-->
 <!--                        <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">-->
@@ -235,7 +239,7 @@
             </div>
 
             <div class="item-slick1 bg-overlay1" style="background-image: url(/image/loadImage/product/banner2.jpg); height: 500px"
-                 data-thumb="/userStyle/images/banner2.jpg" data-caption="Hydra sneaker">
+                 data-thumb="/image/loadImage/product/banner2.jpg" data-caption="DMV Store">
                 <div class="container h-full">
 <!--                    <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">-->
 <!--                        <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">-->
@@ -330,7 +334,7 @@
                 <div class="container">
                     <div class="p-b-32">
                         <h3 class="ltext-105 cl5 txt-center respon1">
-                            HYDRA SNEAKER
+                          DMV Store
                         </h3>
                     </div>
 
@@ -809,6 +813,14 @@
                 <h4 class="stext-301 cl0 p-b-30">
                     THƯƠNG HIỆU
                 </h4>
+                <p class="stext-107 cl7 size-201">
+                    Nike
+                    <br>
+                    Adidas
+                    <br>
+                    Vans
+
+                </p>
 
                 <ul>
                     <li class="p-b-10" th:each="b : ${branches}">
@@ -857,13 +869,13 @@
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
-                    Số 67, Đường Làng Đoài, Liên Hà, Đan Phượng, Hà Nội
+                    Số 51 Nỏ Bạn,Vân Tảo,Thường Tín,Hà Nội
                     <br>
-                    Số điện thoại: 0963852399
+                    Số điện thoại: 0359407719
                 </p>
 
                 <div class="p-t-27">
-                    <a href="https://www.facebook.com/profile.php?id=100063785403897"
+                    <a href="https://www.facebook.com/minggggoptimistic.03"
                        class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
                         <i class="fa fa-facebook"></i>
                     </a>
@@ -879,7 +891,7 @@
             </div>
 
             <div class="col-sm-6 col-lg-4 p-b-50">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1790.7367985920657!2d105.71632638858712!3d21.111825847318748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134558a29cf9f57%3A0x308d1801a26b65c7!2zNjcgRC4gTMOgbmcgxJBvw6BpLCBMacOqbiBIw6AsIMSQYW4gUGjGsOG7o25nLCBIw6AgTuG7mWksIFZpZXRuYW0!5e1!3m2!1sen!2s!4v1700826759069!5m2!1sen!2s"
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3727.996875422555!2d105.89481627596693!3d20.872176193136994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135b198d71ec02f%3A0x8fbdd35bc4f58939!2zTuG7jyBC4bqhbiwgVGjGsOG7nW5nIFTDrW4sIEjDoCBO4buZaSwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1710157451119!5m2!1sen!2s"
                         style="border:0;width: 100%;height: 100%;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
 
